@@ -49,4 +49,8 @@ class Chef::Resource::DockerContainer < Chef::Resource::Machine
   attribute :volumes_from, :kind_of => [String]
   attribute :working_directory, :kind_of => [String]
 
+  # We are not interested in Chef's cloning behavior here.
+  def load_prior_resource
+    Chef::Log.debug("Overloading #{resource_name}.load_prior_resource with NOOP")
+  end
 end
